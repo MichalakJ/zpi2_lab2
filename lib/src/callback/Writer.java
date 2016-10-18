@@ -19,11 +19,11 @@ public class Writer {
             writer.println("Hello World");
             System.out.println("writing to file ..." +fileName);
             writer.close();
-            callBack.methodToCall(true);
+            callBack.setResult(true);
 
         } catch (Exception ex){
             System.out.println(ex.getMessage());
-            callBack.methodToCall(false);
+            callBack.setResult(false);
         }
     }
 }
