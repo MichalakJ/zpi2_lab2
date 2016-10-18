@@ -26,6 +26,13 @@ public class Main {
         CallBack callBack = new CallBackImpl();
 
         Writer.writeToFile(validString, invalidString, fileName, callBack);
+
+        while(!callBack.getResult()){
+            System.out.println("error " + invalidString);
+            System.out.println("Zmien sciezke");
+            fileName = reader.readLine();
+            Writer.writeToFile(validString, invalidString, fileName, callBack);
         }
+        System.out.println("sucess " + validString);
     }
 }
