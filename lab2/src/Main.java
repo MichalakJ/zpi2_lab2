@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * Created by mawieczo on 10/18/16.
+ * @Author Mateusz Wieczorek on 10/18/16.
  */
 public class Main {
 
