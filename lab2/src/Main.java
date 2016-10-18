@@ -12,27 +12,33 @@ import java.io.InputStreamReader;
 public class Main {
 
     private static BufferedReader reader;
+    private static String fileName, validString, invalidString;
+    private static CallBack callBack;
 
     public static void main(String [ ] args) throws IOException {
         reader = new BufferedReader(new InputStreamReader(System.in));
-
-        System.out.println("Wprowadz nazwe pliku");
-        String fileName = reader.readLine();
-        System.out.println("Wprowadź poprawny string");
-        String validString = reader.readLine();
-        System.out.println("Wprowadź niepoprawny string");
-        String invalidString = reader.readLine();
-
-        CallBack callBack = new CallBackImpl();
-
+        callBack = new CallBackImpl();
+        readDataFromConsole();
         Writer.writeToFile(validString, invalidString, fileName, callBack);
-
         while(!callBack.getResult()){
-            System.out.println("error " + invalidString);
-            System.out.println("Zmien sciezke");
-            fileName = reader.readLine();
-            Writer.writeToFile(validString, invalidString, fileName, callBack);
+            tryWriteToFile();
         }
-        System.out.println("sucess " + validString);
+        System.out.println("Poprawnie zapisano do pliku: " + fileName);
+    }
+
+    private static void tryWriteToFile() throws IOException {
+        System.out.println("Niepoprawna ścieżka: " + invalidString);
+        System.out.println("Wprowadź nową poprawną ścieżke");
+        fileName = reader.readLine();
+        Writer.writeToFile(validString, invalidString, fileName, callBack);
+    }
+
+    private static void readDataFromConsole() throws IOException {
+        System.out.println("Wprowadz nazwe pliku");
+        fileName = reader.readLine();
+        System.out.println("Wprowadź poprawny string");
+        validString = reader.readLine();
+        System.out.println("Wprowadź niepoprawny string");
+        invalidString = reader.readLine();
     }
 }
