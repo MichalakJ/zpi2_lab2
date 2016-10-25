@@ -1,5 +1,6 @@
 import callback.CallBack;
 import callback.CallBackImpl;
+import callback.SecondCallBack;
 import callback.Writer;
 
 import java.io.BufferedReader;
@@ -13,15 +14,19 @@ public class Main {
 
     private static BufferedReader reader;
     private static String fileName, validString, invalidString;
-    private static CallBack callBack;
+    private static CallBackImpl callBack;
+    private static SecondCallBack secondCallBack;
 
     public static void main(String [ ] args) throws IOException {
         reader = new BufferedReader(new InputStreamReader(System.in));
-        callBack = new CallBackImpl();
+        secondCallBack = new SecondCallBack();
+        callBack = new CallBackImpl(secondCallBack);
         readDataFromConsole();
         Writer.writeToFile(validString, invalidString, fileName, callBack);
         while(!callBack.getResult()){
             tryWriteToFile();
+            System.out.println("Valid string: " + callBack.getValidString());
+            System.out.println("Invalid string: " + callBack.getInvalidString());
         }
         System.out.println("Poprawnie zapisano do pliku: " + fileName);
     }
