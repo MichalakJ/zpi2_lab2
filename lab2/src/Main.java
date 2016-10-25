@@ -25,14 +25,14 @@ public class Main {
         Writer.writeToFile(validString, invalidString, fileName, callBack);
         while(!callBack.getResult()){
             tryWriteToFile();
-            System.out.println("Valid string: " + callBack.getValidString());
-            System.out.println("Invalid string: " + callBack.getInvalidString());
         }
+        System.out.println("Valid string: " + callBack.getValidString());
         System.out.println("Poprawnie zapisano do pliku: " + fileName);
     }
 
     private static void tryWriteToFile() throws IOException {
-        System.out.println("Niepoprawna ścieżka: " + invalidString);
+        System.out.println("Invalid string: " + callBack.getInvalidString());
+        System.out.println("Niepoprawna ścieżka: " + callBack.getFileName());
         System.out.println("Wprowadź nową poprawną ścieżke");
         fileName = reader.readLine();
         Writer.writeToFile(validString, invalidString, fileName, callBack);
