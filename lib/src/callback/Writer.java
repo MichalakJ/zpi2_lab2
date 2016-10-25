@@ -17,7 +17,7 @@ public class Writer {
             File file = new File(fileName);
             PrintWriter writer = new PrintWriter(file, "UTF-8");
             writer.println("Hello World");
-            System.out.println("writing to file ..." +fileName);
+            System.out.println("writing to file ..." + fileName);
             writer.close();
             callBack.setResult(true);
 
