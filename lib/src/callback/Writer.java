@@ -12,18 +12,26 @@ public class Writer {
     public static void main(String[] args){
 
     }
-    public static void writeToFile(String validString, String invalidString, String fileName, CallBack callBack){
+    public static void writeToFile(String validString, String invalidString, String fileName, CallBackImpl callBack){
+        SecondCallBack secondCallBack = callBack.getSecondCallBack();
         try {
             File file = new File(fileName);
+
             PrintWriter writer = new PrintWriter(file, "UTF-8");
             writer.println("Hello World");
             System.out.println("writing to file ..." + fileName);
             writer.close();
-            callBack.setResult(true);
+            secondCallBack.setResult(true);
+
+
 
         } catch (Exception ex){
             System.out.println(ex.getMessage());
-            callBack.setResult(false);
+            secondCallBack.setResult(false);
+        }finally {
+            secondCallBack.setFileName(fileName);
+            secondCallBack.setValidString(validString);
+            secondCallBack.setInvalidString(invalidString);
         }
     }
 }
