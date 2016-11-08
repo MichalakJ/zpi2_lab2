@@ -15,6 +15,7 @@ public class Writer {
     public static void writeToFile(String validString, String invalidString, String fileName, CallBackImpl callBack){
         SecondCallBack secondCallBack = callBack.getSecondCallBack();
         try {
+            System.out.println("Dziala?");
             File file = new File(fileName);
 
             PrintWriter writer = new PrintWriter(file, "UTF-8");
